@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Dashboard - Pemesanan Bahan Ajar UT</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- ==== HEADER ==== -->
+  <header class="topbar">
+    <div class="container">
+      <h1>Pemesanan Bahan Ajar - Universitas Terbuka</h1>
+      <div class="top-actions">
+        <div id="greeting" class="greeting"></div>
+        <button id="logoutBtn" class="btn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==== GRID LAYOUT ==== -->
+  <div class="container main-grid">
+    <!-- ==== SIDEBAR MENU ==== -->
+    <nav class="sidebar">
+      <ul>
+        <li><button class="nav-btn active" data-target="info">Informasi Bahan Ajar</button></li>
+        <li><button class="nav-btn" data-target="tracking">Tracking Pengiriman</button></li>
+        <li><button class="nav-btn" data-target="laporan">Laporan</button></li>
+        <li><button class="nav-btn" data-target="histori">Histori Transaksi</button></li>
+
+        <!-- ✅ Tambahan menu ke halaman stok -->
+        <li>
+          <a href="stok.html" class="nav-btn" 
+             style="display:block;text-decoration:none;">
+             Informasi Stok Bahan Ajar
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ==== MAIN CONTENT ==== -->
+    <main class="content">
+      <!-- INFORMASI BAHAN AJAR -->
+      <section id="info" class="tab active">
+        <h2>Informasi Bahan Ajar</h2>
+        <div id="buku-list" class="grid"></div>
+      </section>
+
+      <!-- TRACKING PENGIRIMAN -->
+      <section id="tracking" class="tab">
+        <h2>Tracking Pengiriman</h2>
+        <div class="card">
+          <label for="doNumber">Masukkan Nomor Delivery Order</label>
+          <div class="row small-gap">
+            <input id="doNumber" type="text" placeholder="contoh: DO2025001"/>
+            <button id="btnCariDO" class="btn primary">Cari</button>
+          </div>
+        </div>
+
+        <div id="trackingResult"></div>
+      </section>
+
+      <!-- LAPORAN -->
+      <section id="laporan" class="tab">
+        <h2>Laporan</h2>
+        <div class="card">
+          <h3>Monitoring Progress DO Bahan Ajar</h3>
+          <div id="monitoringList"></div>
+        </div>
+
+        <div class="card">
+          <h3>Rekap Bahan Ajar</h3>
+          <div id="rekapBuku"></div>
+        </div>
+      </section>
+
+      <!-- HISTORI TRANSAKSI -->
+      <section id="histori" class="tab">
+        <h2>Histori Transaksi Bahan Ajar</h2>
+        <div id="historyList"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==== FOOTER ==== -->
+  <footer class="footer">
+    <p>© 2025 Universitas Terbuka - UT-Daerah</p>
+  </footer>
+
+  <!-- ==== SCRIPT ==== -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

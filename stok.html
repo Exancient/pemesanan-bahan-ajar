@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Informasi Stok Bahan Ajar - UT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>Informasi Stok Bahan Ajar</h1>
+      <div class="top-actions">
+        <button id="btnBack" class="btn">⬅ Kembali ke Dashboard</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top:20px;">
+    <section class="card">
+      <h2>Daftar Stok Bahan Ajar</h2>
+      <p class="muted">Menampilkan data dari variabel <b>dataBahanAjar</b> (simulasi front-end).</p>
+      <table class="table" id="tabelStok">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Bahan Ajar</th>
+            <th>Kode</th>
+            <th>Stok</th>
+            <th>Lokasi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Tambah Stok Baru</h2>
+      <div class="row small-gap">
+        <input type="text" id="namaBaru" placeholder="Nama Bahan Ajar" />
+        <input type="text" id="kodeBaru" placeholder="Kode" />
+        <input type="number" id="stokBaru" placeholder="Jumlah Stok" />
+        <input type="text" id="lokasiBaru" placeholder="Lokasi Gudang" />
+        <button id="btnTambah" class="btn primary">Tambah</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Universitas Terbuka - UT-Daerah</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    const tbody = document.querySelector("#tabelStok tbody");
+    const renderTabel = () => {
+      tbody.innerHTML = "";
+      dataBahanAjar.forEach((bahan, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${bahan.nama}</td>
+          <td>${bahan.kode}</td>
+          <td>${bahan.stok}</td>
+          <td>${bahan.lokasi}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    };
+
+    renderTabel();
+
+    document.getElementById("btnTambah").addEventListener("click", () => {
+      const nama = document.getElementById("namaBaru").value.trim();
+      const kode = document.getElementById("kodeBaru").value.trim();
+      const stok = parseInt(document.getElementById("stokBaru").value.trim());
+      const lokasi = document.getElementById("lokasiBaru").value.trim();
+
+      if (!nama || !kode || !stok || !lokasi) {
+        alert("Harap isi semua kolom sebelum menambah data!");
+        return;
+      }
+
+      const newItem = {
+        id: dataBahanAjar.length + 1,
+        nama,
+        kode,
+        stok,
+        lokasi
+      };
+
+      dataBahanAjar.push(newItem);
+      renderTabel();
+
+      document.getElementById("namaBaru").value = "";
+      document.getElementById("kodeBaru").value = "";
+      document.getElementById("stokBaru").value = "";
+      document.getElementById("lokasiBaru").value = "";
+
+      alert("Data stok baru berhasil ditambahkan!");
+    });
+
+    document.getElementById("btnBack").addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>
